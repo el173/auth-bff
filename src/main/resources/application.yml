@@ -7,7 +7,6 @@ spring:
         registration:
           keycloak:
             client-id: auth-app
-#            client-secret: your-client-secret
             scope: openid
             authorization-grant-type: authorization_code
             redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
@@ -23,9 +22,9 @@ app:
     config:
       authorizationUrl: /oauth2/authorization/keycloak
       app1:
-        callback: asd
+        callback: https://www.google.co.uk/
       app2:
-        callback: asd
+        callback: https://www.google.co.uk/
 logging:
   level:
     root: DEBUG
