@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: Auth-BFF
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: auth-app
+#            client-secret: your-client-secret
+            scope: openid
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
+        provider:
+          keycloak:
+            authorization-uri: http://localhost:8180/realms/master/protocol/openid-connect/auth
+            token-uri: http://localhost:8180/realms/master/protocol/openid-connect/token
+            user-info-uri: http://localhost:8180/realms/master/protocol/openid-connect/userinfo
+            jwk-set-uri: http://localhost:8180/realms/master/protocol/openid-connect/certs
+            userNameAttribute: preferred_username
+app:
+  auth:
+    config:
+      authorizationUrl: /oauth2/authorization/keycloak
+      app1:
+        callback: asd
+      app2:
+        callback: asd
+logging:
+  level:
+    root: DEBUG
