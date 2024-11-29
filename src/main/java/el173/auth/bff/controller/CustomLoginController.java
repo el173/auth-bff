@@ -1,9 +1,11 @@
 package el173.auth.bff.controller;
 
 import el173.auth.bff.enums.AppName;
+import el173.auth.bff.service.RedisService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,9 @@ import java.io.IOException;
 @Controller
 public class CustomLoginController {
 
+    @Autowired
+    private RedisService redisService;
+
     @Value("${app.auth.config.authorizationUrl}")
     private String authorizationUrl;
 
@@ -31,7 +36,6 @@ public class CustomLoginController {
 
     @RequestMapping(value = "/app-login", method = RequestMethod.GET)
     public void customLoginPage(@RequestParam(required = true) String appName,
-                                HttpSession session,
                                 HttpServletRequest request,
                                 HttpServletResponse response) throws IOException {
 
@@ -42,7 +46,7 @@ public class CustomLoginController {
 
         AppName appEnum = AppName.getAppEnum(appName);
         if (appEnum != null) {
-            session.setAttribute("redirectUri", appEnum.getCallbackUrl());
+            redisService.save("redirectUri", appEnum.getCallbackUrl());
         } else {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid app name");
             return;

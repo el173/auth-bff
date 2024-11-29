@@ -1,6 +1,12 @@
 spring:
   application:
     name: Auth-BFF
+  redis:
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
   security:
     oauth2:
       client:
@@ -9,20 +15,20 @@ spring:
             client-id: auth-app
             scope: openid
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
+            redirect-uri: http://192.168.10.52:8080/login/oauth2/code/keycloak
         provider:
           keycloak:
-            authorization-uri: http://localhost:8180/realms/master/protocol/openid-connect/auth
-            token-uri: http://localhost:8180/realms/master/protocol/openid-connect/token
-            user-info-uri: http://localhost:8180/realms/master/protocol/openid-connect/userinfo
-            jwk-set-uri: http://localhost:8180/realms/master/protocol/openid-connect/certs
+            authorization-uri: http://192.168.10.52:8180/realms/master/protocol/openid-connect/auth
+            token-uri: http://192.168.10.52:8180/realms/master/protocol/openid-connect/token
+            user-info-uri: http://192.168.10.52:8180/realms/master/protocol/openid-connect/userinfo
+            jwk-set-uri: http://192.168.10.52:8180/realms/master/protocol/openid-connect/certs
             userNameAttribute: preferred_username
 app:
   auth:
     config:
       authorizationUrl: /oauth2/authorization/keycloak
       app1:
-        callback: https://www.google.co.uk/
+        callback: myapp://bffAuth/code?
       app2:
         callback: https://www.google.co.uk/
 logging:
