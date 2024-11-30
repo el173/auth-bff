@@ -16,6 +16,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.security:spring-security-oauth2-client'
 
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
 	implementation 'io.lettuce:lettuce-core:6.5.0.RELEASE'

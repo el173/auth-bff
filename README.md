@@ -12,7 +12,6 @@ The application is built to support **multiple applications** by providing **cus
 - **Multi-App Support**: The system supports multiple applications, each with its own callback URL. This makes the app highly flexible for various use cases and client configurations.
 - **Custom Login Page**: A dynamic login page is used to direct users to the correct Keycloak authorization flow based on the requested application.
 - **Keycloak Compatibility**: While this app is configured to work with Keycloak, it is built to support any OpenID Connect-compatible identity provider by adjusting the OAuth2 configuration.
-- **Redis Integration**: Uses Redis to store the temporary authorization tokens, ensuring seamless flow and security in login processes.
 
 ### Technologies:
 - **Spring Boot**: Used for rapid application development with a focus on simplicity and ease of use.
@@ -20,9 +19,6 @@ The application is built to support **multiple applications** by providing **cus
 - **JWT (JSON Web Tokens)**: Used for secure token-based user authentication.
 - **Spring Security**: Handles OAuth2 login, session management, and authentication flows.
 - **Gradle**: Dependency management and build tool.
-- **Redis**: Acts as an in-memory store.
-
----
 
 ## Setting Up and Running Locally
 
